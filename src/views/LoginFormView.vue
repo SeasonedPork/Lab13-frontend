@@ -39,6 +39,7 @@
 <script>
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
+import AuthService from '@/services/AuthService.js'
 
 export default {
   name: 'LoginView',
@@ -57,7 +58,14 @@ export default {
       message: '',
       schema
     }
-  }
+  },
+  methods: {
+	handleLogin(user) {
+		AuthService.login(user).then(() => {
+			this.$router.go()
+		})
+	}
+  },
 }
 </script>
 
