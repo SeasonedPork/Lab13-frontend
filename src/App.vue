@@ -3,7 +3,8 @@
     {{ GStore.flashMessage }}
   </div>
   <div id="nav">
-    <ul class="navbar navbar-expand">
+    <nav v-if="!GStore.currentUser" class="navbar navbar-expand">
+      <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <router-link to="/register" class="nav-link">
         </router-link>
@@ -12,6 +13,19 @@
         <router-link to="/login" class="nav-link">
         <font-awesome-icon icon="sign-in-alt" /> Login
         </router-link>
+      </li>
+    </ul>
+    <ul v-if="GStore.currentUser" class="navbar-nav nl-auto" >
+      <li class="nav-item">
+        <router-link to="/profile" class="nav-link">
+        <font-awesome-icon icon="user" />
+        {{GStore.currentUser.name}}
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" @click="logout">
+          <font-awesome-icon icon="sign-out-alt"/>Logout
+        </a>
       </li>
     </ul>
   </div>
@@ -23,8 +37,20 @@
   <router-view />
 </template>
 <script>
+import AuthService from './services/AuthService'
 export default {
-  inject: ['GStore']
+  inject: ['GStore'],
+  computed: {
+    currentUser() {
+      return localStorage.getItem('user')
+    }
+  },
+  methods: {
+    logout() {
+      AuthService.logout()
+      this.$$router.go()
+    }
+  }
 }
 </script>
 
