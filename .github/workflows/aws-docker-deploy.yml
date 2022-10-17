@@ -5,7 +5,7 @@ push:
       - Dev2
 jobs: 
   docker:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       -
         name: Checkout
