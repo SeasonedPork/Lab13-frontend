@@ -36,4 +36,4 @@ jobs:
          cp docker-compose-prod.yml 331-backend/docker-compose.yml
          cd 331-backend
          docker-compose -H ${{ secrets.HOST_SERVER }} pull
-         docker-compose -H ${{ secrets.HOST_SERVER }} -d
+         docker-compose -H ${{ secrets.HOST_SERVER }} up -d
