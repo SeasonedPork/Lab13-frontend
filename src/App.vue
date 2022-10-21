@@ -3,28 +3,27 @@
     {{ GStore.flashMessage }}
   </div>
   <div id="nav">
-    <nav v-if="!GStore.currentUser" class="navbar navbar-expand">
-      <ul class="navbar-nav ml-auto">
+    <nav v-if="!GStore.currentUser" class="navbar navbar-expand" />
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <router-link to="/register" class="nav-link">
-        </router-link>
+        <router-link to="/register" class="nav-link"> </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/login" class="nav-link">
-        <font-awesome-icon icon="sign-in-alt" /> Login
+          <font-awesome-icon icon="sign-in-alt" /> Login
         </router-link>
       </li>
     </ul>
-    <ul v-if="GStore.currentUser" class="navbar-nav nl-auto" >
+    <ul v-if="GStore.currentUser" class="navbar-nav nl-auto">
       <li class="nav-item">
         <router-link to="/profile" class="nav-link">
-        <font-awesome-icon icon="user" />
-        {{GStore.currentUser.name}}
+          <font-awesome-icon icon="user" />
+          {{ GStore.currentUser.name }}
         </router-link>
       </li>
       <li class="nav-item">
         <a class="nav-link" @click="logout">
-          <font-awesome-icon icon="sign-out-alt"/>Logout
+          <font-awesome-icon icon="sign-out-alt" />Logout
         </a>
       </li>
     </ul>
@@ -33,7 +32,7 @@
     <router-link :to="{ name: 'EventList' }">Home</router-link> |
     <router-link :to="{ name: 'about' }">About</router-link> |
     <span v-if="isAdmin">
-    <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
+      <router-link :to="{ name: 'AddEvent' }"> New Event</router-link>
     </span>
   </nav>
   <router-view />
@@ -46,7 +45,7 @@ export default {
     currentUser() {
       return localStorage.getItem('user')
     },
-    isAdmin(){
+    isAdmin() {
       return AuthService.hasRoles('ROLE_ADMIN')
     }
   },
